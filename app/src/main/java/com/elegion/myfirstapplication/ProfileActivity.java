@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
-    public static final String EMAIL_KEY = "EMAIL_KEY";
-    public static final String PASSWORD_KEY = "PASSWORD_KEY";
+    public static final String USER_KEY = "USER_KEY";
 
     private AppCompatImageView mPhoto;
     private TextView mLogin;
@@ -29,9 +28,10 @@ public class ProfileActivity extends AppCompatActivity {
         mLogin = findViewById(R.id.tvEmail);
         mPassword = findViewById(R.id.tvPassword);
 
-        Bundle bundle = getIntent().getExtras();
-        mLogin.setText(bundle.getString(EMAIL_KEY));
-        mPassword.setText(bundle.getString(PASSWORD_KEY));
+        final Bundle bundle = getIntent().getExtras();
+        final User user = (User) bundle.get(USER_KEY);
+        mLogin.setText(user.getLogin());
+        mPassword.setText(user.getPassword());
 
         mPhoto.setOnClickListener(mOnPhotoClickListener);
     }
