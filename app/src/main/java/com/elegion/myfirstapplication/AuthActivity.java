@@ -1,5 +1,6 @@
 package com.elegion.myfirstapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -22,7 +23,11 @@ public class AuthActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (isEmailValid() && isPasswordValid()) {
-                // переход в приложение
+                Intent startProfileIntent =
+                        new Intent(AuthActivity.this, ProfileActivity.class);
+                startProfileIntent.putExtra(ProfileActivity.EMAIL_KEY, mLogin.getText().toString());
+                startProfileIntent.putExtra(ProfileActivity.PASSWORD_KEY, mPassword.getText().toString());
+                startActivity(startProfileIntent);
             } else {
                 showMessage(R.string.login_input_error);
             }
